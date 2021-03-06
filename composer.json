@@ -1,0 +1,38 @@
+{
+    "name": "alsa7err90/magic_role8",
+    "description": "This package enables you to add and define user roles and permission with ease",
+    "type": "package",
+    "license": "MIT",
+    "version": "0.1.0",
+    "keywords": ["laravel", "8", "laravel8", "laravel 8", "role", "roles", "permission", "permissions"],
+    "authors": [{
+        "name": "abdulnafea",
+        "email": "alsa7err90@gmail.com",
+        "role": "Developer"
+
+    }],
+    "require": {
+        "php": ">= 5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "alsa7err90\\magic_role8\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+
+    "repositories": [{
+        "type": "path",
+        "url": "https://github.com/alsa7err90/magic_role8"
+    }],
+    "config": {
+        "discard-changes": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
+    }
+
+
+}
