@@ -19,6 +19,10 @@ Run the Composer require command from the Terminal:
 - Publish  files with 
 
       php artisan vendor:publish --all
+      
+-Run the php artisan migrate command from the Terminal:
+               
+      php artisan migrate
 
 - Open app\Models\User.php and add this methods to "class User":
 
@@ -38,9 +42,7 @@ Run the Composer require command from the Terminal:
       {
           return $this->belongsToMany(Magrole::class);
       }
--Run the php artisan migrate command from the Terminal:
-               
-      php artisan migrate
+
 - open file .env and add the line don't forget to replace the email by email adminstrator:
 
       EMAIL_ADMINISTRATOR=yourEmailAdmin@example.com
