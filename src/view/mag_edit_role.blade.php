@@ -4,18 +4,15 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="py-12">
                     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                            <ul>
-                                <li><a href="{{ URL::to('/') }}" >home </a></li>
-                                <li><a href="{{ URL::to('mag_roles') }}" >roles </a></li>
-                                <li><a href="{{ URL::to('mag_permissions') }}" >permissions </a></li>
-                                <li><a href="{{ URL::to('mag_users') }}" >users </a></li>
-                            </ul>
+                            <div class="flex  ">
+                                <div class="text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-amber-500 m-2  p-2" style="background-color: rgba(168,85,247,var(--tw-bg-opacity));"><a href="{{ URL::to('/') }}" >home </a></div>
+                                <div class="text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-amber-500 m-2  p-2" style="background-color: rgba(205, 92, 92,var(--tw-bg-opacity));"><a href="{{ URL::to('mag_roles') }}" >roles </a></div>
+                                <div class="text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-amber-500 m-2  p-2" style="background-color: rgba(168,85,247,var(--tw-bg-opacity));"><a   href="{{ URL::to('mag_permissions') }}" >permissions </a></div>
+                                <div class="text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-amber-500 m-2  p-2" style="background-color: rgba(168,85,247,var(--tw-bg-opacity));"><a href="{{ URL::to('mag_users') }}" >users </a></div>
+                              </div>
 
                             <div  style="padding:20px ; ">
                                 the role have :<br>

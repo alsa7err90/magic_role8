@@ -9,20 +9,12 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
 
                 <div class="container">
-                    <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ URL::to('/') }}" >home </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link "  href="{{ URL::to('mag_roles') }}" >roles </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ URL::to('mag_permissions') }}" >permissions </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{{ URL::to('mag_users') }}" >users </a>
-                        </li>
-                    </ul>
+                    <div class="flex  ">
+                        <div class="text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-amber-500 m-2  p-2" style="background-color: rgba(168,85,247,var(--tw-bg-opacity));"><a href="{{ URL::to('/') }}" >home </a></div>
+                        <div class="text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-amber-500 m-2  p-2" style="background-color: rgba(168,85,247,var(--tw-bg-opacity));"><a href="{{ URL::to('mag_roles') }}" >roles </a></div>
+                        <div class="text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-amber-500 m-2  p-2" style="background-color: rgba(205, 92, 92,var(--tw-bg-opacity));"><a   href="{{ URL::to('mag_permissions') }}" >permissions </a></div>
+                        <div class="text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-amber-500 m-2  p-2" style="background-color: rgba(168,85,247,var(--tw-bg-opacity));"><a href="{{ URL::to('mag_users') }}" >users </a></div>
+                      </div>
 
                     <div id="app">
                         <form action="{{ url('search_user') }}" class="form-inline" method="POST">
