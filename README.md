@@ -66,7 +66,7 @@ write "_" after that write do as "show, store, save, ....." or any name you need
     http://127.0.0.1:8000/mag_roles
 
 add role ex: admin, editor, user
-After add that click on "Show this role what has permissions"
+After add that click on "edit permissions"
 to add or remove permission this role
 -go to the link:
 
