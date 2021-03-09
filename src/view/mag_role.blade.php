@@ -1,3 +1,116 @@
+<style>
+    .menu {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+    }
+
+    .menu li {
+        float: left;
+        display: inline;
+    }
+
+    .menu li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    .menu li a:hover:not(.active) {
+        background-color: #111;
+    }
+
+    .menu .active {
+        background-color: rgb(77, 48, 241);
+    }
+
+    @media screen and (min-width: 480px) {
+        input[type=text] {
+            width: 30%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 2px solid rgb(77, 48, 241);
+            border-radius: 4px;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        input[type=text] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 2px solid rgb(77, 48, 241);
+            border-radius: 4px;
+        }
+    }
+
+    .button {
+        background-color: rgb(77, 48, 241);
+        /* Green */
+        border: 1px solid rgb(77, 48, 241);
+        color: white;
+        padding: 12px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+
+    .content {
+        padding: 10px;
+    }
+
+    #customers {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    #customers td,
+    #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #customers tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #customers tr:hover {
+        background-color: #ddd;
+    }
+
+    #customers th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: rgb(25, 27, 29);
+        color: white;
+    }
+
+    .btn-danger {
+        background-color: rgb(255, 30, 30);
+        color: #fff;
+        padding: 10px;
+        font-size: 14px;
+
+    }
+
+    .btn-info {
+        background-color: hsla(214, 86%, 56%);
+        color: #fff;
+        padding: 10px;
+        font-size: 14px;
+
+    }
+</style>
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -7,79 +120,68 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="flex">
-                    <div class="text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-amber-500 m-2  p-2" style="background-color: rgba(168,85,247,var(--tw-bg-opacity));"><a href="{{ URL::to('/') }}" >home </a></div>
-                    <div class="text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-amber-500 m-2  p-2" style="background-color: rgba(205, 92, 92,var(--tw-bg-opacity));"><a href="{{ URL::to('mag_roles') }}" >roles </a></div>
-                    <div class="text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-amber-500 m-2  p-2" style="background-color: rgba(168,85,247,var(--tw-bg-opacity));"><a   href="{{ URL::to('mag_permissions') }}" >permissions </a></div>
-                    <div class="text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-amber-500 m-2  p-2" style="background-color: rgba(168,85,247,var(--tw-bg-opacity));"><a href="{{ URL::to('mag_users') }}" >users </a></div>
-                </div>
-                <div>
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    @if (session()->has('message'))
-                        <div class="alert alert-success">
-                            {{ session('message') }}
-                        </div>
-                    @endif
-                </div>
-                <div class="w-full  bg-white py-10 px-5 ">
-                    <div class="text-2xl mb-2   mr-10">
-                        add your permissions?
+                <ul class="menu">
+                    <li> <a href="{{ URL::to('/') }}">home </a> </li>
+                    <li class="active"><a href="{{ URL::to('mag_roles') }}">roles </a></li>
+                    <li><a href="{{ URL::to('mag_permissions') }}">permissions </a></li>
+                    <li><a href="{{ URL::to('mag_users') }}">users </a></li>
+                </ul>
+                <div class="content">
+                    <div>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        @if (session()->has('message'))
+                            <div class="alert alert-success">
+                                {{ session('message') }}
+                            </div>
+                        @endif
                     </div>
-                    <div class="grid grid-cols-2  m-auto">
+                    <div>
+                        <div>
+                            add your permissions?
+                        </div>
                         <form action="{{ route('mag_roles.store') }}" method="POST">
                             @csrf
-                            <div class="flex space-x-5 mt-3">
-                            <input type="text" class="w-full  focus:outline-none focus:text-gray-600 p-2" name="name" placeholder="name">
-                            <input type="text" class="w-full  focus:outline-none focus:text-gray-600 p-2" name="slug" placeholder="slug">
-                            <input type="submit"  class="w-full mt-6 bg-blue-600 hover:bg-blue-500 text-white font-semibold p-3" value="add">
-                        </div>
-                    </form>
-                </div>
-                </div>
-                <br>
-                Roles : Choose one of the roles to edit <br>
-                <div class="w-2/3 mx-auto">
-                    <div class="bg-white shadow-md rounded my-6">
-                        <table class="text-left w-full border-collapse"> <!--Border collapse doesn't work on this site yet but it's available in newer tailwind versions -->
-                            <thead>
-                                <tr>
-                                    <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">role</th>
-                                    <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">edit</th>
-                                    <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">delete</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($roles as $role)
-                                    <tr class="hover:bg-grey-lighter">
-                                        <td class="py-4 px-6 border-b border-grey-light">{{ $role->name }}</td>
-                                        <td class="py-4 px-6 border-b border-grey-light"><a class="text-white font-bold py-1 px-3 rounded text-xs bg-blue-600 hover:bg-blue-500 text-white  " href="{{ URL::to('mag_roles/' . $role->id) }}">edit permissions</a> </td>
-                                        <form action="{{ url('mag_roles/' .  $role->id ) }}" method="POST">
-                                            @csrf
-                                            <td class="py-4 px-6 border-b border-grey-light"> <input type="submit" class="text-white font-bold py-1 px-3 rounded text-xs bg-red-600 hover:bg-red-200 hover:text-red-600" value="Delete" /></td>
-                                            <input type="hidden" name="_method" value="delete" />
-                                        </form>
-                                    </tr>
-                                @empty
-                                    empty !! pleas add new roles
-                                @endforelse
-                            </tbody>
-                        </table>
+                            <input type="text" name="name" placeholder="name">
+                            <input type="text" name="slug" placeholder="slug">
+                            <input type="submit" class="button" value="add">
+                        </form>
                     </div>
+
+                    Roles : Choose one of the roles to edit
+                    <table id="customers">
+                        <thead>
+                            <tr>
+                                <th>role</th>
+                                <th>edit</th>
+                                <th>delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($roles as $role)
+                                <tr>
+                                    <td>{{ $role->name }}</td>
+                                    <td><a class="btn-info" href="{{ URL::to('mag_roles/' . $role->id) }}">edit permissions</a> </td>
+                                    <form action="{{ url('mag_roles/' .  $role->id ) }}" method="POST">
+                                        @csrf
+                                        <td> <input class="btn-danger" type="submit" value="Delete" /></td>
+                                        <input type="hidden" name="_method" value="delete" />
+                                    </form>
+                                </tr>
+                            @empty
+                                empty !! pleas add new roles
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </div>{{-- py-12 --}}
-    </div>
+        </div>
+    </div>{{-- py-12 --}}
 </x-app-layout>
-
-
-
-
-

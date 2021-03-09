@@ -1,3 +1,34 @@
+<style>
+    .menu{
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+    }
+
+    .menu li {
+        float: left;
+        display: inline;
+        }
+
+        .menu li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        }
+
+        .menu li a:hover:not(.active) {
+        background-color: #111;
+        }
+
+        .menu  .active {
+        background-color: #4CAF50;
+        }
+        </style>
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -8,12 +39,12 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="container">
-                    <div class="flex  ">
-                        <div class="text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-amber-500 m-2  p-2" style="background-color: rgba(168,85,247,var(--tw-bg-opacity));"><a href="{{ URL::to('/') }}">home </a></div>
-                        <div class="text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-amber-500 m-2  p-2" style="background-color: rgba(168,85,247,var(--tw-bg-opacity));"><a href="{{ URL::to('mag_roles') }}">roles </a></div>
-                        <div class="text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-amber-500 m-2  p-2" style="background-color: rgba(205, 92, 92,var(--tw-bg-opacity));"><a href="{{ URL::to('mag_permissions') }}">permissions </a></div>
-                        <div class="text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-amber-500 m-2  p-2" style="background-color: rgba(168,85,247,var(--tw-bg-opacity));"><a href="{{ URL::to('mag_users') }}">users </a></div>
-                    </div>
+                    <ul class="menu">
+                        <li> <a href="{{ URL::to('/') }}">home </a> </li>
+                        <li><a href="{{ URL::to('mag_roles') }}">roles </a></li>
+                        <li><a href="{{ URL::to('mag_permissions') }}">permissions </a></li>
+                        <li class="active"><a href="{{ URL::to('mag_users') }}">users </a></li>
+                    </ul>
                     <div id="app">
                         <form action="{{ url('search_user') }}" class="form-inline" method="POST">
                             <div class="input-group">

@@ -1,3 +1,82 @@
+<style>
+    .menu {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+    }
+
+    .menu li {
+        float: left;
+        display: inline;
+    }
+
+    .menu li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    .menu li a:hover:not(.active) {
+        background-color: #111;
+    }
+
+    .menu .active {
+        background-color: rgb(77, 48, 241);
+    }
+
+    .content {
+        padding: 10px;
+    }
+
+    #customers {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    #customers td,
+    #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #customers tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #customers tr:hover {
+        background-color: #ddd;
+    }
+
+    #customers th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: rgb(25, 27, 29);
+        color: white;
+    }
+
+    .btn-danger {
+        background-color: rgb(255, 30, 30);
+        color: #fff;
+        padding: 10px;
+        font-size: 14px;
+
+    }
+
+    .btn-info {
+        background-color: hsla(214, 86%, 56%);
+        color: #fff;
+        padding: 10px;
+        font-size: 14px;
+
+    }
+</style>
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -7,26 +86,28 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="flex ">
-                    <div class="text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-amber-500 m-2  p-2" style="background-color: rgba(168,85,247,var(--tw-bg-opacity));"><a href="{{ URL::to('/') }}">home </a></div>
-                    <div class="text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-amber-500 m-2  p-2" style="background-color: rgba(168,85,247,var(--tw-bg-opacity));"><a href="{{ URL::to('mag_roles') }}">roles </a></div>
-                    <div class="text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-amber-500 m-2  p-2" style="background-color: rgba(168,85,247,var(--tw-bg-opacity));"><a href="{{ URL::to('mag_permissions') }}">permissions </a></div>
-                    <div class="text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-amber-500 m-2  p-2" style="background-color: rgba(205, 92, 92,var(--tw-bg-opacity));"><a href="{{ URL::to('mag_users') }}">users </a></div>
-                </div>
-                <table class="min-w-full divide-y divide-gray-200 mt-2">
-                    <thead class="bg-gray-50">
+                <ul class="menu">
+                    <li> <a href="{{ URL::to('/') }}">home </a> </li>
+                    <li><a href="{{ URL::to('mag_roles') }}">roles </a></li>
+                    <li><a href="{{ URL::to('mag_permissions') }}">permissions </a></li>
+                    <li class="active"><a href="{{ URL::to('mag_users') }}">users </a></li>
+                </ul>
+                <div class="content">
+
+                <table id="customers">
+                    <thead>
                         <tr>
-                            <td scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NAME</td>
-                            <td scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">EMAIL</td>
-                            <td scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ROLE</td>
-                            <td scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">SELECT</td>
-                            <td scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">EDIT</td>
+                            <td>NAME</td>
+                            <td>EMAIL</td>
+                            <td>ROLE</td>
+                            <td>SELECT</td>
+                            <td>EDIT</td>
                         </tr>
                     </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
+                    <tbody  >
                         @forelse($magUsers as $magUser)
                             <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">
+                                <td  >
                                     {{ $magUser->name }}
                                 </td>
                                 <td>
@@ -36,14 +117,14 @@
                                 </td>
 
                                 <form action="{{ url('edit_role_user/'.$magUser->id) }}" method="POST">
-                                    <td><select class="form-control" name="new_role" id="{{ $magUser->id }}">
+                                    <td><select  name="new_role" id="{{ $magUser->id }}">
                                             <option> select role </option>
                                             @foreach ($magRoles as $role)
                                             <option value="{{ $role->id }}">{{ $role->name }}</option>
                                             @endforeach
                                         </select></td>
                                     @csrf
-                                    <td> <input type="submit" value="save"></td>
+                                    <td> <input type="submit" class="btn-info" value="save"></td>
                                 </form>
 
                             </tr>
