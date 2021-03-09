@@ -59,7 +59,7 @@ if  you want to do that automatically  just  click button: auto_refresh_permissi
 or if you want to add Manually you shold write first name class controller or any class you use after that
 write "_" after that write do as "show, store, save, ....." or any name you need :
      
-              Ex:   PostController_show
+              Ex:   show_Controller 
 
 -go to the link:
 
