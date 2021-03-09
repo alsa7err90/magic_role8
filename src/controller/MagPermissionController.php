@@ -27,7 +27,6 @@ class MagPermissionController extends Controller
         Magpermission::create([
             'name' => $request->name,
             'slug' => $request->slug
-
         ]);
         return redirect()->back();
     } // end store

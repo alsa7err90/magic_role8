@@ -7,83 +7,72 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-
                 <div class="container">
                     <div class="flex  ">
-                        <div class="text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-amber-500 m-2  p-2" style="background-color: rgba(168,85,247,var(--tw-bg-opacity));"><a href="{{ URL::to('/') }}" >home </a></div>
-                        <div class="text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-amber-500 m-2  p-2" style="background-color: rgba(168,85,247,var(--tw-bg-opacity));"><a href="{{ URL::to('mag_roles') }}" >roles </a></div>
-                        <div class="text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-amber-500 m-2  p-2" style="background-color: rgba(205, 92, 92,var(--tw-bg-opacity));"><a   href="{{ URL::to('mag_permissions') }}" >permissions </a></div>
-                        <div class="text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-amber-500 m-2  p-2" style="background-color: rgba(168,85,247,var(--tw-bg-opacity));"><a href="{{ URL::to('mag_users') }}" >users </a></div>
-                      </div>
-
+                        <div class="text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-amber-500 m-2  p-2" style="background-color: rgba(168,85,247,var(--tw-bg-opacity));"><a href="{{ URL::to('/') }}">home </a></div>
+                        <div class="text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-amber-500 m-2  p-2" style="background-color: rgba(168,85,247,var(--tw-bg-opacity));"><a href="{{ URL::to('mag_roles') }}">roles </a></div>
+                        <div class="text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-amber-500 m-2  p-2" style="background-color: rgba(205, 92, 92,var(--tw-bg-opacity));"><a href="{{ URL::to('mag_permissions') }}">permissions </a></div>
+                        <div class="text-white text-2xl font-extrabold rounded-md flex items-center justify-center bg-amber-500 m-2  p-2" style="background-color: rgba(168,85,247,var(--tw-bg-opacity));"><a href="{{ URL::to('mag_users') }}">users </a></div>
+                    </div>
                     <div id="app">
                         <form action="{{ url('search_user') }}" class="form-inline" method="POST">
                             <div class="input-group">
-                                <input type="text" class="form-control" name="text"  placeholder="Search">
+                                <input type="text" class="form-control" name="text" placeholder="Search">
                                 <div class="input-group-btn">
-                                <button class="btn btn-default" type="submit">
-                                    <i class="glyphicon glyphicon-search"></i>
-                                </button>
+                                    <button class="btn btn-default" type="submit">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button>
                                 </div>
                             </div>
-
                             @csrf
                         </form>
-
-                    <div class="row mt-4" >
-                        <table  class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">id</th>
-                                    <th scope="col">NAME</th>
-                                    <th scope="col">EMAIL</th>
-                                    <th scope="col">ROLE</th>
-                                    <th scope="col">SELECT</th>
-                                    <th scope="col">EDIT</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse($magUsers as $magUser)
+                        <div class="row mt-4">
+                            <table class="table">
+                                <thead>
                                     <tr>
-                                        <td>
-                                            {{ $magUser->id }}
-                                        </td>
-                                        <td>
-                                            {{ $magUser->name }}
-                                        </td>
-                                        <td>
-                                            {{ $magUser->email }}
-                                        </td>
-                                        <td>{{ $magUser->roles[0]->name ?? "don't have role" }}
-                                        </td>
-                                        <form action="{{ url('edit_role_user/'.$magUser->id) }}"  method="POST">
-                                            <td>
-                                                <select   class="form-control" name="new_role" id="{{ $magUser->id }}"  >
-                                                    <option > select role </option>
-                                                    @foreach ($magRoles as $role)
-                                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </td>
-                                            @csrf
-                                            <td><input type="submit" value="save"></td>
-                                        </form>
+                                        <th scope="col">id</th>
+                                        <th scope="col">NAME</th>
+                                        <th scope="col">EMAIL</th>
+                                        <th scope="col">ROLE</th>
+                                        <th scope="col">SELECT</th>
+                                        <th scope="col">EDIT</th>
                                     </tr>
-                                @empty
-                                don't found data!!
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div>
-                </div>{{-- container --}}
+                                </thead>
+                                <tbody>
+                                    @forelse($magUsers as $magUser)
+                                        <tr>
+                                            <td>
+                                                {{ $magUser->id }}
+                                            </td>
+                                            <td>
+                                                {{ $magUser->name }}
+                                            </td>
+                                            <td>
+                                                {{ $magUser->email }}
+                                            </td>
+                                            <td>{{ $magUser->roles[0]->name ?? "don't have role" }}
+                                            </td>
+                                            <form action="{{ url('edit_role_user/'.$magUser->id) }}" method="POST">
+                                                <td>
+                                                    <select class="form-control" name="new_role" id="{{ $magUser->id }}">
+                                                        <option> select role </option>
+                                                        @foreach ($magRoles as $role)
+                                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </td>
+                                                @csrf
+                                                <td><input type="submit" value="save"></td>
+                                            </form>
+                                        </tr>
+                                    @empty
+                                        don't found data!!
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>{{-- container --}}
+                </div>
             </div>
         </div>
-    </div>
 </x-app-layout>
-
-
-
-
-
-
-
