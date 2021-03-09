@@ -93,21 +93,31 @@
                     <li class="active"><a href="{{ URL::to('mag_users') }}">users </a></li>
                 </ul>
                 <div class="content">
-
-                <table id="customers">
-                    <thead>
-                        <tr>
-                            <td>NAME</td>
-                            <td>EMAIL</td>
-                            <td>ROLE</td>
-                            <td>SELECT</td>
-                            <td>EDIT</td>
-                        </tr>
-                    </thead>
-                    <tbody  >
-                        @forelse($magUsers as $magUser)
+                    <form action="{{ url('search_user') }}" class="form-inline" method="POST">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="text" placeholder="Search">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                        @csrf
+                    </form>
+                    <table id="customers">
+                        <thead>
                             <tr>
-                                <td  >
+                                <td>NAME</td>
+                                <td>EMAIL</td>
+                                <td>ROLE</td>
+                                <td>SELECT</td>
+                                <td>EDIT</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($magUsers as $magUser)
+                            <tr>
+                                <td>
                                     {{ $magUser->name }}
                                 </td>
                                 <td>
@@ -117,10 +127,10 @@
                                 </td>
 
                                 <form action="{{ url('edit_role_user/'.$magUser->id) }}" method="POST">
-                                    <td><select  name="new_role" id="{{ $magUser->id }}">
+                                    <td><select name="new_role" id="{{ $magUser->id }}">
                                             <option> select role </option>
                                             @foreach ($magRoles as $role)
-                                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                                <option value="{{ $role->id }}">{{ $role->name }}</option>
                                             @endforeach
                                         </select></td>
                                     @csrf
@@ -128,13 +138,13 @@
                                 </form>
 
                             </tr>
-                        @empty
+                            @empty
                             ooops !! it's empty !!
-                        @endforelse
-                    </tbody>
-                </table>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-    {{-- py-12 --}}
+        {{-- py-12 --}}
 </x-app-layout>
