@@ -93,15 +93,11 @@
                     <li class="active"><a href="{{ URL::to('mag_users') }}">users </a></li>
                 </ul>
                 <div class="content">
-                    <form action="{{ url('search_user') }}" class="form-inline" method="POST">
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="text" placeholder="Search">
-                            <div class="input-group-btn">
-                                <button class="btn btn-default" type="submit">
-                                    <i class="glyphicon glyphicon-search"></i>
-                                </button>
-                            </div>
-                        </div>
+                    <form action="{{ url('search_user') }}" method="POST">
+                        <input type="text" class="form-control" name="text" placeholder="Search">
+                        <button   type="submit">
+                            search
+                        </button>
                         @csrf
                     </form>
                     <table id="customers">

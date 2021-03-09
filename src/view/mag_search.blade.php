@@ -1,5 +1,5 @@
 <style>
-    .menu{
+    .menu {
         list-style-type: none;
         margin: 0;
         padding: 0;
@@ -10,25 +10,73 @@
     .menu li {
         float: left;
         display: inline;
-        }
+    }
 
-        .menu li a {
+    .menu li a {
         display: block;
         color: white;
         text-align: center;
         padding: 14px 16px;
         text-decoration: none;
-        }
+    }
 
-        .menu li a:hover:not(.active) {
+    .menu li a:hover:not(.active) {
         background-color: #111;
-        }
+    }
 
-        .menu  .active {
-        background-color: #4CAF50;
-        }
-        </style>
+    .menu .active {
+        background-color: rgb(77, 48, 241);
+    }
 
+    .content {
+        padding: 10px;
+    }
+
+    #customers {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    #customers td,
+    #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #customers tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #customers tr:hover {
+        background-color: #ddd;
+    }
+
+    #customers th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: rgb(25, 27, 29);
+        color: white;
+    }
+
+    .btn-danger {
+        background-color: rgb(255, 30, 30);
+        color: #fff;
+        padding: 10px;
+        font-size: 14px;
+
+    }
+
+    .btn-info {
+        background-color: hsla(214, 86%, 56%);
+        color: #fff;
+        padding: 10px;
+        font-size: 14px;
+
+    }
+</style>
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -46,19 +94,14 @@
                         <li class="active"><a href="{{ URL::to('mag_users') }}">users </a></li>
                     </ul>
                     <div id="app">
-                        <form action="{{ url('search_user') }}" class="form-inline" method="POST">
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="text" placeholder="Search">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-default" type="submit">
-                                        <i class="glyphicon glyphicon-search"></i>
-                                    </button>
-                                </div>
-                            </div>
+                        <form action="{{ url('search_user') }}" method="POST">
+                            <input type="text" class="form-control" name="text" placeholder="Search">
+                            <button   type="submit">
+                                search
+                            </button>
                             @csrf
                         </form>
-                        <div class="row mt-4">
-                            <table class="table">
+                            <table  id="customers">
                                 <thead>
                                     <tr>
                                         <th scope="col">id</th>
