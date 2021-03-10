@@ -88,9 +88,9 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <ul class="menu">
                     <li> <a href="{{ URL::to('/') }}">home </a> </li>
-                    <li><a href="{{ URL::to('mag_roles') }}">roles </a></li>
+                    <li class="active"><a href="{{ URL::to('mag_roles') }}">roles </a></li>
                     <li><a href="{{ URL::to('mag_permissions') }}">permissions </a></li>
-                    <li class="active"><a href="{{ URL::to('mag_users') }}">users </a></li>
+                    <li><a href="{{ URL::to('mag_users') }}">users </a></li>
                 </ul>
                 <div class="content">
                     <div>
