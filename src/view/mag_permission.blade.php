@@ -127,7 +127,7 @@
                 </ul>
                 <div class="content">
                     <div>
-                        add your permissions?
+                        add your permissions
                     </div>
                     <div>
                         <form action="{{ route('mag_permissions.store') }}" method="POST">
@@ -139,7 +139,7 @@
                             </div>
                         </form>
                     </div>
-
+                     <p>to add permission auto :
                     <a class="btn-info" href="auto_insert_permission">auto add permission</a>
 
                     <table id="customers">
