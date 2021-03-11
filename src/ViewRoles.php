@@ -12,9 +12,8 @@ class ViewRoles
     }
 
     public function has_role(){
-        $user_id = Auth::user()->id;
-        $magUsers =  User::findOrFail($user_id)->with('roles')->pluck("name");
-        return $magUsers[0];
+        $name_role = Auth::user()->roles[0]->name;
+        return $name_role;
     }
 
     public function his_role($mag_role) :bool
