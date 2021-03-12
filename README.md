@@ -112,6 +112,7 @@ and add role to users
   2 - controller:
  
    To check if the user has permission to use this function:
+         
          $magic_role = new MagicRole();
          $magic_role->chakeRole('nameController','do') ;
       
