@@ -54,16 +54,18 @@ Run the Composer require command from the Terminal:
    
       this old code :
       return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'name' => $input['name'],
+            'email' => $input['email'],
+            'password' => Hash::make($input['password']),
         ]);
         
       to new code :
-        $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+       use App\Models\Magrole;
+       ..
+        $user =  User::create([
+            'name' => $input['name'],
+            'email' => $input['email'],
+            'password' => Hash::make($input['password']),
         ]);
         $role = Magrole::where('name', 'user')->first();
         $user->assignRole($role);
