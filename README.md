@@ -48,32 +48,33 @@ Run the Composer require command from the Terminal:
           return $this->roles()->save($role);
       }
 
-- open file .env and add the line don't forget to replace the email by email adminstrator:
-
-      EMAIL_ADMINISTRATOR=yourEmailAdmin@example.com
 
 - to assign Role delault for user after register :
    open file "CreateNewUser.php" in foler "app/Actions/Fortify" and edit function register from:
    
       this old code :
       return User::create([
-            'name' => $input['name'],
-            'email' => $input['email'],
-            'password' => Hash::make($input['password']),
-       ]); 
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
         
       to new code :
         $user = User::create([
-            'name' => $input['name'],
-            'email' => $input['email'],
-            'password' => Hash::make($input['password']),
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
         ]);
         $role = Magrole::where('name', 'user')->first();
         $user->assignRole($role);
         return $user;
    
 
- 
+ - open file .env and add the line don't forget to replace the email by email adminstrator:
+
+       EMAIL_ADMINISTRATOR=yourEmailAdmin@example.com
+      
+      
 #  useing :
  -go to the link:
  
