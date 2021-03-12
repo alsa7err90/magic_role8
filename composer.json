@@ -3,8 +3,8 @@
     "description": "This package enables you to add and define user roles and permission with ease",
     "type": "package",
     "license": "MIT",
-    "version": "0.1.0",
-    "keywords": ["laravel", "8", "laravel8", "laravel 8", "role", "roles", "permission", "permissions"],
+    "version": "1.0",
+    "keywords": ["laravel", "8", "laravel8", "laravel 8", "role", "roles", "permission", "permissions","auth"],
     "authors": [{
         "name": "abdulnafea",
         "email": "alsa7err90@gmail.com",
@@ -30,7 +30,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "0.1.x-dev"
+            "dev-master": "1.0.x-dev"
         }
     }
 
