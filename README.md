@@ -6,7 +6,7 @@ Install the package through Composer.
 
 Run the Composer require command from the Terminal:
 
-      composer require alsa7err90/magic_role8
+    composer require alsa7err90/magic_role8
 
 - Open config/app.php and add this line to your Service Providers Array.
 
@@ -20,7 +20,7 @@ Run the Composer require command from the Terminal:
 
       php artisan vendor:publish --all
       
--Run the php artisan migrate command from the Terminal:
+- Run the php artisan migrate command from the Terminal:
                
       php artisan migrate
 
@@ -42,12 +42,36 @@ Run the Composer require command from the Terminal:
       {
           return $this->belongsToMany(Magrole::class);
       }
+      
+      public function assignRole(Magrole $role)
+      {
+          return $this->roles()->save($role);
+      }
 
 - open file .env and add the line don't forget to replace the email by email adminstrator:
 
       EMAIL_ADMINISTRATOR=yourEmailAdmin@example.com
 
-     
+- to assign Role delault for user after register :
+   open file "CreateNewUser.php" in foler "app/Actions/Fortify" and edit function register from:
+   
+      this old code :
+      return User::create([
+            'name' => $input['name'],
+            'email' => $input['email'],
+            'password' => Hash::make($input['password']),
+       ]); 
+        
+      to new code :
+        $user = User::create([
+            'name' => $input['name'],
+            'email' => $input['email'],
+            'password' => Hash::make($input['password']),
+        ]);
+        $role = Magrole::where('name', 'user')->first();
+        $user->assignRole($role);
+        return $user;
+   
 
  
 #  useing :
