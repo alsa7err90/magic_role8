@@ -60,7 +60,8 @@ Run the Composer require command from the Terminal:
         ]);
         
       to new code :
-       use App\Models\Magrole;
+       use App\Models\Magrole; // this before class CreateNewUser
+       .. 
        ..
         $user =  User::create([
             'name' => $input['name'],
