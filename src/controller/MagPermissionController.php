@@ -47,29 +47,7 @@ class MagPermissionController extends Controller
         $models =  $this->getModels(app_path("http/controllers/"), "");
         foreach($models as $model)
         {
-            Magpermission::create
-            ([
-                'name' => 'show_'.$model,
-                'slug' => 'show_'.$model
-            ]);
-
-            Magpermission::create
-            ([
-                'name' => 'store_'.$model,
-                'slug' => 'store_'.$model
-            ]);
-            Magpermission::create([
-                'name' => 'update_'.$model,
-                'slug' => 'update_'.$model
-            ]);
-            Magpermission::create([
-                'name' => 'destroy1_'.$model,
-                'slug' => 'destroy1_'.$model
-            ]);
-            Magpermission::create([
-                'name' => 'destroy2_'.$model,
-                'slug' => 'destroy2_'.$model
-            ]);
+            $this->set_permission($model,['show','store','update','destroy1','destroy2']);
         }
         return redirect()->back();
     } // auto_insert_permission
@@ -90,5 +68,21 @@ class MagPermissionController extends Controller
         }
         return $out;
     } // getModels
+    
+    public function set_permission($model,$does):void
+    {
+        foreach($does as $do){
+            $user = Magpermission::where('name', '=',$do.'_'.$model)->first();
+            if ($user === null) {
+                Magpermission::create([
+                    'name' => $do.'_'.$model,
+                    'slug' => $do.'_'.$model
+                ]);
+            }
+
+        }
+
+    }
+
 
 }
